@@ -11,4 +11,5 @@
     <cover-image src="/resource/icon/profile.png"></cover-image>
     <cover-image src="/resource/icon/location.png" bindtap="onMyLocationTap"></cover-image>
 </cover-view>
+<cover-view class="btn-container bg-grey round" bindtap="moveCar"><cover-view>扫描租车</cover-view></cover-view>
 </map>

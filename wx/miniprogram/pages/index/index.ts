@@ -55,12 +55,8 @@ Page({
       wx.canIUse("open-data.type.userAvatarUrl") &&
       wx.canIUse("open-data.type.userNickName"), // 如需尝试获取用户信息可改为false
   },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: "../logs/logs",
-    });
-  },
+
+  //onMyLocationTap 当前定位
   onMyLocationTap() {
     wx.getLocation({
       type: "gcj02",
@@ -80,6 +76,21 @@ Page({
       },
     });
   },
+
+  // onScanClick 扫描租车
+  onScanClick() {
+    wx.scanCode({
+      success: (res) => {
+        console.log("scanCode", res);
+
+        wx.navigateTo({
+          url: "/pages/register/register",
+        });
+      },
+      fail: console.error,
+    });
+  },
+
   moveCar() {
     const mapCtx = wx.createMapContext("map");
     const dest = {
@@ -117,13 +128,11 @@ Page({
   },
   onShow() {
     this.isPageShowing = true;
-    console.log('onShow');
-    
+    console.log("onShow");
   },
   onHide() {
     this.isPageShowing = false;
     console.log("onHide");
-    
   },
   onLoad() {
     // @ts-ignore

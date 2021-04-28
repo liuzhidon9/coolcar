@@ -1,0 +1,54 @@
+/* miniprogram/pages/register/register.wxss */
+.container{
+
+}
+.container .lic-tmpl{
+  width: 600rpx;
+  height:450rpx;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lic-tmpl .lic-tmpl-img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: .3;
+}
+.lic-tmpl .cuIcon-camerafill {
+  font-size: 172rpx;
+}
+.lic-tmpl .instruction{
+  position: absolute;
+  bottom:-65rpx;
+}
+.lic-real {
+  position: relative;
+  overflow: hidden;
+}
+.lic-real .check-ok{
+  width: 200rpx;
+  height: 200rpx;
+  background-color: #fff;
+  transform: rotate(45deg);
+  padding: 10rpx;
+  position: absolute;
+  top:-100rpx;
+  right: -100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.check-ok .check{
+  transform: rotate(-45deg);
+  width: 60rpx;
+  height: 60rpx;
+}
+.lic-form {
+  width:600rpx;
+}
+.lic-form .cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}

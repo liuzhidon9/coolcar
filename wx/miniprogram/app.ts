@@ -1,18 +1,27 @@
 // app.ts
 App<IAppOption>({
-  globalData: {},
+  globalData: {
+  
+  },
+  getUserInfo: () => {
+    return new Promise((resolve, reject) => {
+      let userInfo: WechatMiniprogram.UserInfo|undefined = getApp<IAppOption>().globalData.userInfo
+      if (!userInfo?.avatarUrl) {
+        userInfo = JSON.parse(wx.getStorageSync("userInfo"));
+        getApp<IAppOption>().globalData.userInfo = userInfo;
+      }
+      resolve(userInfo)
+    });
+  },
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
+    const userInfo = wx.getStorageSync("userInfo") || {};
+    this.globalData.userInfo = userInfo;
     // 登录
     wx.login({
-      success: res => {
-        console.log(res.code)
+      success: (res) => {
+        console.log(res.code);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       },
-    })
+    });
   },
-})
+});

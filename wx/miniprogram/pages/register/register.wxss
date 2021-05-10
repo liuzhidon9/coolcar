@@ -3,8 +3,8 @@
 
 }
 .container .lic-tmpl{
-  width: 600rpx;
-  height:450rpx;
+  width: 650rpx;
+  height:487rpx;
   position: relative;
   display: flex;
   justify-content: center;
@@ -47,7 +47,7 @@
   height: 60rpx;
 }
 .lic-form {
-  width:600rpx;
+  width:650rpx;
 }
 .lic-form .cu-form-group .title {
   min-width: calc(4em + 30rpx);

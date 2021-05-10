@@ -1,0 +1,20 @@
+<view class="container">
+    <view class="static">
+        <image class="sedan" src="/resource/sedan.png"></image>
+        <view class="prompt">
+            <text>驾驶安全是用户的责任</text>
+            <text>请将车辆停放在停车位内</text>
+        </view>
+    </view>
+    <view class="avatar-container">
+    <button wx:if="{{!avatarUrl}}" class="cu-avatar round lg bg-grey margin-xs" bindtap="onGetUserProfile">
+    <text class="cuIcon-people"></text>
+    </button>
+    <view wx:if="{{avatarUrl}}" class="switch-container">
+        <image class="cu-avatar round lg bg-grey margin-xs" src="{{avatarUrl}}"></image>
+        <switch bindchange="onShareLocaltion" checked="{{shareLocaltion}}"/>
+    </view>
+    <view class="margin-top-lg">实时展示我的头像</view>
+    </view>
+    <button style="width:80%;" class="bg-grey lg">立即开锁</button>
+</view>

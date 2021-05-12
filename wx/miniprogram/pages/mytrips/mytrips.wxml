@@ -1,0 +1,13 @@
+<view class="container">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{images}}" wx:key="*this">
+            <swiper-item>
+                <image src="{{item}}" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="avatar-container margin-right-xl margin-top text-blue" bindtap="onRegisterTap">
+        <cover-image class="round cu-avatar margin-right" src="{{avatarUrl?avatarUrl:'/resource/icon/profile.png'}}" bindtap="onGetUserProfile"></cover-image>
+        驾驶资格未认证
+    </view>
+</view>

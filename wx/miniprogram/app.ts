@@ -4,10 +4,11 @@ App<IAppOption>({
   
   },
   getUserInfo: () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       let userInfo: WechatMiniprogram.UserInfo|undefined = getApp<IAppOption>().globalData.userInfo
       if (!userInfo?.avatarUrl) {
-        userInfo = JSON.parse(wx.getStorageSync("userInfo"));
+       const userInfoStr = wx.getStorageSync("userInfo")
+        userInfo =userInfoStr? JSON.parse(userInfoStr):userInfoStr;
         getApp<IAppOption>().globalData.userInfo = userInfo;
       }
       resolve(userInfo)

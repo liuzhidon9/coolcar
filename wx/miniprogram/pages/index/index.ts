@@ -1,10 +1,11 @@
 // index.ts
-// 获取应用实例
-const app = getApp<IAppOption>();
+
+import { routing } from "../../utils/routing";
 
 Page({
   isPageShowing: false,
   data: {
+    avatarUrl: "",
     setting: {
       skew: 0,
       rotate: 0,
@@ -46,16 +47,13 @@ Page({
         height: 30,
       },
     ],
-    motto: "Hello World",
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse("button.open-type.getUserInfo"),
-    canIUseGetUserProfile: false,
-    canIUseOpenData:
-      wx.canIUse("open-data.type.userAvatarUrl") &&
-      wx.canIUse("open-data.type.userNickName"), // 如需尝试获取用户信息可改为false
   },
-
+  // onMyTripTap 我的行程
+  onMyTripTap() {
+    wx.navigateTo({
+      url:routing.mytrips(),
+    });
+  },
   //onMyLocationTap 当前定位
   onMyLocationTap() {
     wx.getLocation({
@@ -77,14 +75,18 @@ Page({
     });
   },
 
-  // onScanClick 扫描租车
-  onScanClick() {
+  // onScanTap 扫描租车
+  onScanTap() {
     wx.scanCode({
       success: (res) => {
         console.log("scanCode", res);
-
+        //TODO: get car id from scan
+        const carID = "123";
+        const redirectURL = routing.lock({
+          car_id: carID,
+        });
         wx.navigateTo({
-          url: "/pages/register/register",
+          url: routing.register({ redirectURL: redirectURL }),
         });
       },
       fail: console.error,
@@ -135,32 +137,12 @@ Page({
     console.log("onHide");
   },
   onLoad() {
-    // @ts-ignore
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true,
-      });
-    }
-  },
-  getUserProfile() {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: "展示用户信息", // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res);
+    getApp<IAppOption>()
+      .getUserInfo()
+      .then((userInfo) => {
         this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true,
+          avatarUrl: userInfo?.avatarUrl,
         });
-      },
-    });
-  },
-  getUserInfo(e: any) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e);
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-    });
+      });
   },
 });

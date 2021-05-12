@@ -21,6 +21,18 @@
         {
           "name": "pages/lock/lock",
           "pathName": "pages/lock/lock",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/driving/driving",
+          "pathName": "pages/driving/driving",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mytrips/mytrips",
+          "pathName": "pages/mytrips/mytrips",
           "scene": null
         }
       ]

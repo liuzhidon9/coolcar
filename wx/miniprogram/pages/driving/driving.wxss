@@ -1,0 +1,35 @@
+/* miniprogram/pages/driving/driving.wxss */
+page{
+    width:100%;
+    height: 100%;
+}
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.container .pannel {
+    width: 100%;
+    padding-right: 100rpx;
+    padding-left: 100rpx;
+}
+
+.pannel .payment {
+    text-align: center;
+}
+.pannel .payment .time{
+    font-size: 68rpx;
+    font-weight: 600;
+}
+.pannel .payment .time .cuIcon-timefill {
+    color: orange;
+}
+.pannel .payment .fee{
+    margin-top: 15rpx;
+    margin-bottom: 30rpx;
+}
+
+#map {
+    width: 100%;
+    flex-grow: 1;
+}

@@ -12,4 +12,40 @@ swiper image{
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
+}
+.avatar-container .mytrips-heading{
+  position: absolute;
+  left: 60rpx;
+  font-weight: 600;
+  font-style: italic;
+}
+scroll-view .trip{
+  margin:30rpx;
+  margin-top:unset;
+  background-color: #fff;
+  border-radius: 15rpx;
+}
+
+.trip .trip-detail .fee{
+  font-style: italic;
+}
+.nav-container{
+  width: 100%;
+  display: flex;
+}
+.nav-container swiper{
+  width: 200rpx;
+}
+.nav-container swiper .cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
 }

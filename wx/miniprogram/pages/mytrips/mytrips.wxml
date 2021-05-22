@@ -1,13 +1,57 @@
 <view class="container">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{images}}" wx:key="*this">
-            <swiper-item>
-                <image src="{{item}}" />
+    <view id="heading">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for="{{images}}" wx:key="*this">
+                <swiper-item>
+                    <image src="{{item}}" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="avatar-container padding-right margin-top margin-bottom text-blue" bindtap="onRegisterTap">
+            <text class="mytrips-heading text-xl text-black">我的行程</text>
+            <cover-image class="round cu-avatar margin-right" src="{{avatarUrl?avatarUrl:'/resource/icon/profile.png'}}" bindtap="onGetUserProfile"></cover-image>
+            驾驶资格未认证
+        </view>
+    </view>
+    <view class="nav-container">
+        <swiper duration="500" current-item-id="{{navScroll}}" class="bg-white" vertical style="height:{{tripsHeight}}px;" display-multiple-items="{{navCount}}">
+            <swiper-item class="flex align-center justify-center" wx:for="{{navItems}}" wx:key="id" id="{{item.id}}" item-id="{{item.id}}" bindtap="onNavItemTap" data-main-id="{{item.mainId}}">
+                <view class=" {{navSel===item.id?'text-green cur':''}}">{{item.label}}</view>
             </swiper-item>
-        </block>
-    </swiper>
-    <view class="avatar-container margin-right-xl margin-top text-blue" bindtap="onRegisterTap">
-        <cover-image class="round cu-avatar margin-right" src="{{avatarUrl?avatarUrl:'/resource/icon/profile.png'}}" bindtap="onGetUserProfile"></cover-image>
-        驾驶资格未认证
+        </swiper>
+        <scroll-view bindscroll="onMainScroll" scroll-y scroll-with-animation enable-back-to-top scroll-into-view="{{mainScroll}}" style="height:{{tripsHeight}}px;">
+            <view wx:for="{{mainItems}}" wx:key="id" class="trip main-item" id="{{item.id}}" data-nav-id="{{item.navId}}" data-nav-scroll-id="{{item.navScrollId}}">
+                <view class="cu-bar padding-lr">
+                    <view class="trip-title">
+                        <text class="cuIcon-title text-green"></text>
+                        {{item.data.id}}
+                    </view>
+                    <view class="status">{{item.data.status}}</view>
+                </view>
+                <view class="trip-detail flex solid-bottom padding-lr padding-bottom justify-between">
+                    <view class="detail-l">
+                        <view class="detail-row flex">
+                            <view class="field margin-right">起</view>
+                            <view class="value text-bold">{{item.data.start}}</view>
+                        </view>
+                        <view class="detail-row flex">
+                            <view class="field margin-right">终</view>
+                            <view class="value text-bold">{{item.data.end}}</view>
+                        </view>
+                        <view class="detail-row flex">
+                            <view class="field margin-right">距</view>
+                            <view class="value text-bold">{{item.data.distance}}</view>
+                        </view>
+                        <view class="detail-row flex">
+                            <view class="field margin-right">时</view>
+                            <view class="value text-bold">{{item.data.duration}}</view>
+                        </view>
+                    </view>
+                    <view class="detail-r flex align-center">
+                        <view class="fee text-price text-bold text-xxl">{{item.data.fee}}</view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
     </view>
 </view>
